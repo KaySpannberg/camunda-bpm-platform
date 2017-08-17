@@ -459,6 +459,7 @@ public class HistoryServiceTest extends PluggableProcessEngineTestCase {
     runtimeService.startProcessInstanceByKey(ONE_TASK_PROCESS, vars);
 
     assertEquals(2, historyService.createNativeHistoricVariableInstanceQuery().sql("SELECT count(*) FROM " + managementService.getTableName(HistoricVariableInstance.class)).count());
+    assertEquals(2, historyService.createNativeHistoricVariableInstanceQuery().sql("SELECT * FROM " + managementService.getTableName(HistoricVariableInstance.class)).list().size());
     assertEquals(1, historyService.createNativeHistoricVariableInstanceQuery().sql("SELECT * FROM " + managementService.getTableName(HistoricVariableInstance.class)).listPage(0, 1).size());
 
     List<HistoricVariableInstance> variables = historyService.createNativeHistoricVariableInstanceQuery().sql("SELECT * FROM " + managementService.getTableName(HistoricVariableInstance.class)).list();
